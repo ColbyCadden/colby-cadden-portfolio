@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="96" viewBox="0 0 80 96" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="ribbon" x1="40" y1="52" x2="40" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8a7350"/>
+      <stop offset="1" stop-color="#5c4d38"/>
+    </linearGradient>
+    <linearGradient id="medal" x1="24" y1="8" x2="56" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d4c4a0"/>
+      <stop offset="0.45" stop-color="#a8956a"/>
+      <stop offset="1" stop-color="#7a6648"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="40" y1="6" x2="40" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8dcc4" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#6b5a40" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <path d="M28 58 L22 96 L40 86 L58 96 L52 58 Z" fill="url(#ribbon)"/>
+  <path d="M34 58 L30 88 L40 82 L50 88 L46 58 Z" fill="#4a3f30" opacity="0.35"/>
+  <circle cx="40" cy="28" r="24" fill="url(#medal)" stroke="url(#rim)" stroke-width="2"/>
+  <circle cx="40" cy="28" r="18" stroke="#e8dcc4" stroke-opacity="0.22" stroke-width="1"/>
+  <text x="40" y="33" text-anchor="middle" fill="#2a2418" font-family="Georgia, serif" font-size="22" font-weight="700">1</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect fill="#141922" width="800" height="600"/>
+  <line x1="0" y1="0" x2="800" y2="600" stroke="#22d3ee" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="800" y1="0" x2="0" y2="600" stroke="#22d3ee" stroke-opacity="0.06" stroke-width="1"/>
+  <text x="400" y="300" text-anchor="middle" dominant-baseline="middle" fill="#22d3ee" opacity="0.35" font-family="monospace" font-size="14">HACKATHONS — DETAIL</text>
+</svg>

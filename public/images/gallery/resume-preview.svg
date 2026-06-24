@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="880" viewBox="0 0 680 880">
+  <rect fill="#141922" width="680" height="880"/>
+  <line x1="0" y1="0" x2="680" y2="880" stroke="#22d3ee" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="680" y1="0" x2="0" y2="880" stroke="#22d3ee" stroke-opacity="0.06" stroke-width="1"/>
+  <text x="340" y="440" text-anchor="middle" dominant-baseline="middle" fill="#22d3ee" opacity="0.35" font-family="monospace" font-size="14">RESUME PREVIEW</text>
+</svg>
