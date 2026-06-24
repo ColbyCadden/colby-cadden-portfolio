@@ -39,6 +39,17 @@ export function SiteFooter() {
           >
             Connect on LinkedIn →
           </a>
+          <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-text-subtle">
+            GitHub
+          </p>
+          <a
+            href={siteConfig.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-block text-[15px] font-medium text-text-muted transition-colors hover:text-text-primary"
+          >
+            View GitHub profile →
+          </a>
         </div>
       </div>
 
