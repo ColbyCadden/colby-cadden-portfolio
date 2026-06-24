@@ -14,6 +14,32 @@ interface DevelopmentTimelineProps {
   versions: DevelopmentVersion[];
 }
 
+type VersionImage = {
+  src: string;
+  alt: string;
+  objectFit?: "cover" | "contain";
+};
+
+function getVersionImages(version: DevelopmentVersion): VersionImage[] {
+  return [
+    version.image && {
+      src: version.image,
+      alt: version.imageAlt ?? version.title,
+      objectFit: version.objectFit,
+    },
+    version.secondaryImage && {
+      src: version.secondaryImage,
+      alt: version.secondaryImageAlt ?? version.title,
+      objectFit: version.secondaryObjectFit,
+    },
+    version.tertiaryImage && {
+      src: version.tertiaryImage,
+      alt: version.tertiaryImageAlt ?? version.title,
+      objectFit: version.tertiaryObjectFit,
+    },
+  ].filter(Boolean) as VersionImage[];
+}
+
 function DetailList({
   title,
   items,
@@ -35,7 +61,7 @@ function DetailList({
       >
         {title}
       </h4>
-      <ul className="mt-1.5 space-y-1">
+      <ul className="mt-2 space-y-1.5">
         {items.map((item) => (
           <li
             key={item}
@@ -55,163 +81,136 @@ function DetailList({
   );
 }
 
-function TimelineImage({
-  src,
-  alt,
-  objectFit,
+function TimelineImageCell({
+  image,
   className,
+  priority,
 }: {
-  src: string;
-  alt: string;
-  objectFit?: "cover" | "contain";
+  image: VersionImage;
   className?: string;
+  priority?: boolean;
 }) {
-  const isContain = objectFit === "contain";
+  const isContain = image.objectFit === "contain";
 
   return (
     <div
       className={cn(
-        "relative h-36 w-full shrink-0 sm:h-40 lg:min-h-[9.5rem] lg:max-h-[12rem] lg:flex-1",
+        "relative min-h-[200px] overflow-hidden rounded-md border border-border-subtle bg-[#121110] sm:min-h-[240px] lg:min-h-0",
         className,
       )}
     >
       <Image
-        src={src}
-        alt={alt}
+        src={image.src}
+        alt={image.alt}
         fill
+        priority={priority}
         className={cn(
-          isContain ? "object-contain object-center" : "object-cover object-center",
+          isContain
+            ? "object-contain object-center p-3 sm:p-4"
+            : "object-cover object-center",
         )}
-        sizes="(max-width: 1024px) 90vw, 360px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
       />
     </div>
   );
 }
 
-function VersionImages({
-  version,
-  className,
-}: {
-  version: DevelopmentVersion;
-  className?: string;
-}) {
-  const images = [
-    version.image && {
-      src: version.image,
-      alt: version.imageAlt ?? version.title,
-      objectFit: version.objectFit,
-    },
-    version.secondaryImage && {
-      src: version.secondaryImage,
-      alt: version.secondaryImageAlt ?? version.title,
-      objectFit: version.secondaryObjectFit,
-    },
-    version.tertiaryImage && {
-      src: version.tertiaryImage,
-      alt: version.tertiaryImageAlt ?? version.title,
-      objectFit: version.tertiaryObjectFit,
-    },
-  ].filter(Boolean) as { src: string; alt: string; objectFit?: "cover" | "contain" }[];
-
+function VersionImageGallery({ version }: { version: DevelopmentVersion }) {
+  const images = getVersionImages(version);
   if (images.length === 0) return null;
 
-  const sideBySide = images.length > 1;
+  if (images.length === 1) {
+    return (
+      <TimelineImageCell
+        image={images[0]}
+        priority
+        className="aspect-[16/10] min-h-[220px] sm:min-h-[280px] lg:aspect-[16/9] lg:min-h-[380px] xl:min-h-[440px]"
+      />
+    );
+  }
+
+  if (images.length === 2) {
+    return (
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:gap-5">
+        {images.map((image, index) => (
+          <TimelineImageCell
+            key={image.src}
+            image={image}
+            priority={index === 0}
+            className="aspect-[4/3] min-h-[220px] sm:min-h-[260px] lg:aspect-[5/4] lg:min-h-[320px] xl:min-h-[380px]"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  const [primary, ...rest] = images;
 
   return (
-    <div
-      className={cn(
-        sideBySide
-          ? cn(
-              "grid gap-2 sm:gap-3",
-              images.length >= 3 ? "grid-cols-3" : "grid-cols-2",
-            )
-          : "flex flex-col gap-3",
-        className,
-      )}
-    >
-      {images.map((image) => (
-        <TimelineImage
+    <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2 lg:grid-rows-2 lg:gap-5 lg:min-h-[400px] xl:min-h-[480px]">
+      <TimelineImageCell
+        image={primary}
+        priority
+        className="aspect-[4/3] min-h-[220px] sm:min-h-[260px] lg:col-span-1 lg:row-span-2 lg:aspect-auto lg:min-h-full"
+      />
+      {rest.map((image) => (
+        <TimelineImageCell
           key={image.src}
-          src={image.src}
-          alt={image.alt}
-          objectFit={image.objectFit}
-          className={
-            sideBySide
-              ? "h-32 sm:h-36 lg:h-36 lg:min-h-0 lg:max-h-none"
-              : undefined
-          }
+          image={image}
+          className="aspect-[4/3] min-h-[200px] sm:min-h-[220px] lg:aspect-auto lg:min-h-0"
         />
       ))}
     </div>
   );
 }
 
-function versionHasImages(version: DevelopmentVersion) {
-  return Boolean(
-    version.image || version.secondaryImage || version.tertiaryImage,
+function VersionTextContent({ version }: { version: DevelopmentVersion }) {
+  return (
+    <div className="flex flex-col gap-5 lg:gap-6">
+      <div>
+        <span className="font-mono text-[10px] uppercase tracking-wider text-accent-cyan/80">
+          {version.label}
+        </span>
+        <h4 className="mt-1 text-lg font-medium text-text-primary sm:text-xl">
+          {version.title}
+        </h4>
+        <p className="mt-2 max-w-3xl text-[13px] leading-relaxed text-text-muted sm:text-[14px]">
+          {version.summary}
+        </p>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+        <DetailList title="What changed" items={version.changes} />
+        <DetailList title="What improved" items={version.improvements} />
+        <DetailList
+          title="Issues & fixes"
+          items={version.issues}
+          tone="issue"
+        />
+      </div>
+
+      <ProjectCallout label="Design lesson" tone="lesson">
+        {version.lesson}
+      </ProjectCallout>
+    </div>
   );
 }
 
-function versionImageCount(version: DevelopmentVersion) {
-  return [version.image, version.secondaryImage, version.tertiaryImage].filter(
-    Boolean,
-  ).length;
-}
-
 function VersionDetail({ version }: { version: DevelopmentVersion }) {
-  const hasImages = versionHasImages(version);
-  const wideGallery = versionImageCount(version) >= 3;
+  const hasImages = getVersionImages(version).length > 0;
 
   return (
-    <div className="flex flex-col gap-4">
-      {hasImages && wideGallery && <VersionImages version={version} />}
-
-      <div
-        className={cn(
-          "flex flex-col gap-4",
-          !wideGallery &&
-            "lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,36%)] lg:items-start lg:gap-5",
-        )}
-      >
-        <div className="flex min-w-0 flex-col gap-3.5">
-          <div>
-            <span className="font-mono text-[10px] uppercase tracking-wider text-accent-cyan/80">
-              {version.label}
-            </span>
-            <h4 className="mt-0.5 text-[15px] font-medium text-text-primary">
-              {version.title}
-            </h4>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-text-muted">
-              {version.summary}
-            </p>
+    <div className="flex flex-col gap-6 lg:gap-8">
+      {hasImages && (
+        <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-6xl">
+            <VersionImageGallery version={version} />
           </div>
-
-          {hasImages && !wideGallery && (
-            <div className="lg:hidden">
-              <VersionImages version={version} />
-            </div>
-          )}
-
-          <div className="grid gap-3.5 sm:grid-cols-2">
-            <DetailList title="What changed" items={version.changes} />
-            <DetailList title="What improved" items={version.improvements} />
-            <DetailList
-              title="Issues & fixes"
-              items={version.issues}
-              tone="issue"
-            />
-          </div>
-
-          <ProjectCallout label="Design lesson" tone="lesson">
-            {version.lesson}
-          </ProjectCallout>
         </div>
+      )}
 
-        {hasImages && !wideGallery && (
-          <div className="hidden lg:block">
-            <VersionImages version={version} />
-          </div>
-        )}
+      <div className="rounded-md border border-border-subtle bg-surface-elevated/15 p-4 sm:p-5 lg:p-7">
+        <VersionTextContent version={version} />
       </div>
     </div>
   );
@@ -332,16 +331,14 @@ export function DevelopmentTimeline({ versions }: DevelopmentTimelineProps) {
         })}
       </div>
 
-      {/* Active version detail, single panel, image inline with text */}
-      <div className="mt-6 rounded-md border border-border-subtle bg-surface-elevated/15 lg:mt-7">
+      <div className="mt-6 lg:mt-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={active.id}
-            initial={motionEnabled ? { opacity: 0, y: 6 } : false}
+            initial={motionEnabled ? { opacity: 0, y: 8 } : false}
             animate={{ opacity: 1, y: 0 }}
-            exit={motionEnabled ? { opacity: 0, y: -4 } : undefined}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="p-4 sm:p-5"
+            exit={motionEnabled ? { opacity: 0, y: -6 } : undefined}
+            transition={{ duration: 0.24, ease: "easeOut" }}
           >
             <VersionDetail version={active} />
           </motion.div>
