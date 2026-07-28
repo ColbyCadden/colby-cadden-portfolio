@@ -54,7 +54,7 @@ export function CaseStudyPage({ content }: CaseStudyPageProps) {
   return (
     <CaseStudyShell>
       <ProjectHero meta={meta} explodedCompare={explodedCompare} />
-      <SpecGrid items={spec} />
+      {spec.length > 0 && <SpecGrid items={spec} />}
 
       {engineeringProblem && <TechnicalSection section={engineeringProblem} />}
       {overviewSection && <TechnicalSection section={overviewSection} />}
@@ -75,17 +75,17 @@ export function CaseStudyPage({ content }: CaseStudyPageProps) {
       )}
 
       {hasVersionTimeline && (
-        <VersionTimeline versions={versions} label="V1 → V2 Timeline" />
+        <VersionTimeline versions={versions} label="V1 → V3 Timeline" />
       )}
 
       {hasV3Direction && (
         <V3DirectionPanel label={v3Direction.label} focus={v3Direction.focus} />
       )}
 
+      {visuals.length > 0 && <VisualGallery assets={visuals} />}
+
       {cadSection && <TechnicalSection section={cadSection} />}
       {embeddedSection && <TechnicalSection section={embeddedSection} />}
-
-      {visuals.length > 0 && <VisualGallery assets={visuals} />}
 
       {storySections?.map((section) => (
         <StorySectionGallery key={section.id} section={section} />

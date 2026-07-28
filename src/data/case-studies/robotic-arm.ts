@@ -13,36 +13,10 @@ export const roboticArmCaseStudy: CaseStudyContent = {
     projectType: "Passion project / mechatronics prototype",
     heroImage: "/images/projects/robotic-arm/gripper-v1-assembled-front.png",
     heroAlt: "Fusion 360 render of V1 robotic gripper with VL53L0X sensor",
-    endEffectorTitle: "End Effector",
+    hideHeroImage: true,
   },
 
-  spec: [
-    { label: "Status", value: "In progress" },
-    {
-      label: "Focus",
-      value:
-        "End-effector design, torque reduction, sensor-triggered control",
-    },
-    {
-      label: "Fabrication",
-      value:
-        "Fusion 360 · PLA 3D printing · cardboard / styrofoam quick prototypes",
-    },
-    {
-      label: "Software",
-      value: "PlatformIO · VS Code · C / embedded programming",
-    },
-    {
-      label: "Hardware",
-      value:
-        "Arduino Nano · ESP-based board · MS24 & SG90 servos · brushless motor · ToF / VL6180X sensor · touch input",
-    },
-    {
-      label: "Role",
-      value:
-        "CAD designer, full end-effector process, early-stage prototyping, arm design iteration",
-    },
-  ],
+  spec: [],
 
   sections: [
     {
@@ -152,15 +126,66 @@ export const roboticArmCaseStudy: CaseStudyContent = {
         { label: "Status", value: "In development" },
       ],
     },
+    {
+      id: "v3",
+      version: "V3",
+      title: "Full arm assembly + sensor gripper",
+      bullets: [
+        "Full 2-DoF arm structure with X-brace links for stiffness at lower weight",
+        "RDS3225 25 kg servos at the shoulder and elbow joints",
+        "Parallel-jaw end effector with gear linkage and serrated grip faces",
+        "VL53L0X ToF sensor mounted in the palm for proximity-triggered actuation",
+      ],
+      gallery: [
+        {
+          src: "/images/projects/robotic-arm/gripper-v3-arm-front.png",
+          alt: "V3 robotic arm CAD, front view with RDS3225 servos and gripper",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v3-arm-iso.png",
+          alt: "V3 robotic arm CAD, isometric view of full assembly",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v3-sensor-underside.png",
+          alt: "V3 gripper underside showing VL53L0X ToF sensor in the palm",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v3-gripper-iso.png",
+          alt: "V3 gripper isometric close-up with gear linkage and serrated jaws",
+          objectFit: "contain",
+        },
+      ],
+      spec: [
+        {
+          label: "Arm servos",
+          value: "RDS3225, 25 kg torque at shoulder and elbow",
+        },
+        {
+          label: "Structure",
+          value: "X-brace arm links, U-bracket servo mounts",
+        },
+        {
+          label: "End effector",
+          value: "Parallel jaws, gear linkage, serrated grip faces",
+        },
+        {
+          label: "Sensor",
+          value: "VL53L0X ToF, palm-mounted proximity trigger",
+        },
+      ],
+    },
   ],
 
   v3Direction: {
-    label: "V2 development focus",
+    label: "Next development focus",
     focus: [
-      "Lower weight across the end-effector assembly",
-      "Reduced servo torque through rack-and-pinion linkage",
-      "Better jaw accuracy and repeatable gripping motion",
-      "Refined pivot tolerances before print-and-test validation",
+      "Print and assemble the V3 arm and end effector for bench testing",
+      "Validate RDS3225 torque and joint clearance under load",
+      "Tune VL53L0X proximity thresholds for reliable grip triggers",
+      "Iterate jaw geometry and linkage tolerances after first print",
     ],
   },
 
@@ -176,12 +201,4 @@ export const roboticArmCaseStudy: CaseStudyContent = {
     },
   ],
 
-  explodedCompare: {
-    assembledSrc: "/images/projects/robotic-arm/gripper-v1-assembled-front.png",
-    explodedSrc: "/images/projects/robotic-arm/gripper-v1-exploded-nano.png",
-    assembledAlt: "Assembled V1 gripper CAD render",
-    explodedAlt: "Exploded view of gripper gear train",
-    label: "Assembly vs exploded view",
-    versionTitle: "Version 1",
-  },
 };
