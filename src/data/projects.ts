@@ -43,6 +43,41 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "bear-spray-quick-release",
+    title: "Quick-Release Bear Spray Holder",
+    tagline: "Fast-access shoulder-strap mount",
+    description:
+      "ENME 101 team mini-project: a dovetail quick-release mechanism for bear spray, modelled in SolidWorks and validated with a PLA prototype on backpack straps.",
+    tags: ["SolidWorks", "3D Printing", "Mechanical Design"],
+    thumbnail: "/images/projects/bear-spray-quick-release/prototype-worn-hero.png",
+    heroImage: "/images/projects/bear-spray-quick-release/prototype-worn-hero.png",
+    featured: true,
+    year: "2026",
+    role: "Mechanical design, CAD, prototyping",
+    overview:
+      "Team mini-project solving slow bear-spray access on trails. Dovetail joint, Velcro mounting, and support-free PLA prints.",
+    highlights: [
+      "Dovetail one-motion release mechanism",
+      "Universal shoulder-strap mounting with Velcro",
+      "SolidWorks CAD → PLA prototype pipeline",
+    ],
+    techStack: ["SolidWorks", "PLA 3D Printing", "Velcro", "Magnets"],
+    images: [
+      "/images/projects/bear-spray-quick-release/cad-assembly-front.png",
+      "/images/projects/bear-spray-quick-release/prototype-worn-hero.png",
+      "/images/projects/bear-spray-quick-release/prototype-release-demo.png",
+    ],
+    home: {
+      shortText:
+        "Dovetail quick-release mount for bear spray — designed for fast deployment from a backpack shoulder strap.",
+      metadata:
+        "SolidWorks · PLA Prototype · Dovetail Joint · Velcro Mount · ENME 101",
+      resultLine: "ENME 101 Team Mini-Project",
+      layout: "mechanical",
+      secondaryImage: "/images/projects/bear-spray-quick-release/cad-assembly-iso.png",
+    },
+  },
+  {
     slug: "waterborne-rescue-vessel",
     title: "Waterborne Rescue Vessel",
     tagline: "Autonomous surface vehicle for emergency response",
