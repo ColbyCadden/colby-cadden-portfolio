@@ -8,7 +8,7 @@ export const projects: Project[] = [
     description:
       "In-progress robotic arm prototype focused on end-effector accuracy, torque limits, and mechanical iteration across V1–V3 builds.",
     tags: ["Robotics", "CAD", "Embedded"],
-    thumbnail: "/images/projects/robotic-arm/gripper-v1-exploded-nano.png",
+    thumbnail: "/images/projects/robotic-arm/gripper-v4-arm-iso.png",
     heroImage: "/images/projects/robotic-arm/gripper-v1-exploded-nano.png",
     featured: true,
     year: "2025–2026",

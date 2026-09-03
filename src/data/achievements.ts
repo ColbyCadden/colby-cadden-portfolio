@@ -32,6 +32,12 @@ export const achievements: Achievement[] = [
     tier: "standard",
   },
   {
+    id: "deans-list",
+    title: "Dean's List",
+    subtitle: "University of Calgary",
+    tier: "standard",
+  },
+  {
     id: "delf-b2",
     title: "DELF B2",
     subtitle: "French language proficiency",

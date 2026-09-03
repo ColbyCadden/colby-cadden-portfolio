@@ -75,7 +75,7 @@ export function CaseStudyPage({ content }: CaseStudyPageProps) {
       )}
 
       {hasVersionTimeline && (
-        <VersionTimeline versions={versions} label="V1 → V3 Timeline" />
+        <VersionTimeline versions={versions} />
       )}
 
       {hasV3Direction && (

@@ -86,7 +86,7 @@ export const roboticArmCaseStudy: CaseStudyContent = {
     {
       id: "v2",
       version: "V2",
-      title: "Parallel-jaw end effector (in development)",
+      title: "Parallel-jaw end effector",
       bullets: [
         "Rack-and-pinion drive with four-bar linkage for symmetric jaw motion",
         "Triangular cutouts in the jaws to cut weight while keeping serrated grip surfaces",
@@ -170,6 +170,62 @@ export const roboticArmCaseStudy: CaseStudyContent = {
         {
           label: "End effector",
           value: "Parallel jaws, gear linkage, serrated grip faces",
+        },
+        {
+          label: "Sensor",
+          value: "VL53L0X ToF, palm-mounted proximity trigger",
+        },
+      ],
+    },
+    {
+      id: "v4",
+      version: "V4",
+      title: "Linear rail base + gripper refinement",
+      bullets: [
+        "Added a stepper-driven linear rail beneath the arm, extending reach along a track instead of a fixed base",
+        "Carried over the V3 arm: X-brace links and RDS3225 25 kg servos at shoulder and elbow",
+        "Refined linkage-driven gripper with serrated jaws and VL53L0X ToF sensor in the palm",
+        "Base plate engraved \"TIMOTHY\"",
+      ],
+      gallery: [
+        {
+          src: "/images/projects/robotic-arm/gripper-v4-arm-front.png",
+          alt: "V4 robotic arm CAD, front view on linear rail base",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v4-arm-side.png",
+          alt: "V4 robotic arm CAD, side profile view",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v4-arm-iso.png",
+          alt: "V4 robotic arm CAD, isometric view of full assembly on rail",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v4-gripper-iso.png",
+          alt: "V4 gripper isometric close-up with TIMOTHY-engraved base plate",
+          objectFit: "contain",
+        },
+        {
+          src: "/images/projects/robotic-arm/gripper-v4-sensor-closeup.png",
+          alt: "V4 gripper isometric close-up showing VL53L0X ToF sensor and linkage",
+          objectFit: "contain",
+        },
+      ],
+      spec: [
+        {
+          label: "New axis",
+          value: "Belt-driven linear rail, stepper motor actuation",
+        },
+        {
+          label: "Arm servos",
+          value: "RDS3225, 25 kg torque at shoulder and elbow (carried over from V3)",
+        },
+        {
+          label: "End effector",
+          value: "Linkage-driven gripper, serrated jaws",
         },
         {
           label: "Sensor",
