@@ -65,7 +65,7 @@ export function HeroSection() {
           {...fade(0.14)}
           className="mt-16 max-w-xl border-t border-border-subtle pt-12 lg:mt-20 lg:max-w-2xl lg:pt-14"
         >
-          <p className="text-[15px] leading-[1.9] text-text-muted sm:text-[16px] sm:leading-[1.85]">
+          <p className="whitespace-pre-line text-[15px] leading-[1.9] text-text-muted sm:text-[16px] sm:leading-[1.85]">
             {heroContent.intro}
           </p>
           <div className="mt-10 flex flex-wrap gap-3 lg:mt-12">

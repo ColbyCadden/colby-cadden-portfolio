@@ -45,111 +45,100 @@ export const bearSprayQuickReleaseCaseStudy: CaseStudyContent = {
     },
   ],
 
-  versions: [
-    {
-      id: "research",
-      version: "V1",
-      title: "Research & mechanism selection",
-      bullets: [
-        "Reviewed existing bear spray holders — most were slow, awkward, or not universal across backpacks",
-        "Brainstormed clips, rails, and magnet attachments to keep the mechanism simple and reliable",
-        "Selected a dovetail joint for guided connection and one-motion upward release",
-        "First physical prototype validated the slot mechanism before committing to final geometry",
-      ],
-      gallery: [
-        {
-          src: `${base}/cad-dovetail-section.png`,
-          alt: "Cross-section CAD showing dovetail joint between mounting base and canister holder",
-          objectFit: "contain",
-        },
-        {
-          src: `${base}/prototype-dovetail-magnet.png`,
-          alt: "Hands demonstrating dovetail rail, magnet seating, and Velcro strap attachment",
-          objectFit: "contain",
-        },
-      ],
-      spec: [
-        { label: "Mechanism", value: "Dovetail joint, one upward motion to release" },
-        { label: "Attachment", value: "Velcro straps on shoulder strap" },
-        { label: "Retention", value: "Magnets + clip concepts prototyped" },
-      ],
-    },
+  versions: [],
+
+  storySections: [
     {
       id: "cad",
-      version: "V2",
-      title: "SolidWorks CAD",
-      bullets: [
-        "Two-part assembly: universal mounting base and curved canister cradle",
-        "Dovetail provides guided slide-in connection between base and holder",
-        "Sleek profile keeps spray firmly attached during walking and aggressive movement",
-        "Intentional geometry for support-free PLA printing and faster iteration",
-      ],
-      gallery: [
+      title: "CAD",
+      intro:
+        "Two-part SolidWorks assembly — a universal mounting base and a curved canister cradle joined by a dovetail slide.",
+      images: [
         {
+          id: "cad-assembly-front",
           src: `${base}/cad-assembly-front.png`,
           alt: "SolidWorks render of full assembly, front view",
+          caption: "Full assembly, front view",
           objectFit: "contain",
         },
         {
+          id: "cad-assembly-iso",
           src: `${base}/cad-assembly-iso.png`,
           alt: "SolidWorks render of assembly, isometric view",
+          caption: "Full assembly, isometric view",
           objectFit: "contain",
         },
         {
+          id: "cad-mounting-base",
           src: `${base}/cad-mounting-base.png`,
           alt: "CAD render of mounting base with strap slots and dovetail channel",
+          caption: "Mounting base — strap slots and dovetail channel",
           objectFit: "contain",
         },
         {
+          id: "cad-canister-holder",
           src: `${base}/cad-canister-holder.png`,
           alt: "CAD render of canister holder with dovetail rail and weight-reduction cutouts",
+          caption: "Canister holder — dovetail rail and weight-reduction cutouts",
           objectFit: "contain",
         },
-      ],
-      spec: [
-        { label: "CAD", value: "SolidWorks" },
-        { label: "Print material", value: "PLA" },
-        { label: "Parts", value: "Mounting base + canister cradle" },
-        { label: "DFM", value: "Flat print faces, support-free triangular cutouts" },
+        {
+          id: "cad-dovetail-section",
+          src: `${base}/cad-dovetail-section.png`,
+          alt: "Cross-section CAD showing dovetail joint between mounting base and canister holder",
+          caption: "Cross-section through the dovetail joint",
+          objectFit: "contain",
+        },
       ],
     },
     {
       id: "prototype",
-      version: "V3",
-      title: "PLA prototype & field demo",
-      bullets: [
-        "Printed and assembled full mechanism for backpack shoulder-strap mounting",
-        "Velcro secures base to strap; cradle releases with a single upward pull",
-        "Validated fit, access speed, and retention during outdoor wear testing",
-        "Demonstrated quick access compared to zipper and carabiner alternatives",
-      ],
-      gallery: [
+      title: "Real-Life Prototype",
+      intro:
+        "PLA prototype printed and field-tested on a backpack shoulder strap.",
+      images: [
         {
+          id: "prototype-worn-hero",
           src: `${base}/prototype-worn-hero.png`,
           alt: "Wearing prototype on backpack with canister at chest height for fast access",
-          objectFit: "contain",
+          caption: "Worn on a backpack shoulder strap",
         },
         {
+          id: "prototype-dovetail-magnet",
+          src: `${base}/prototype-dovetail-magnet.png`,
+          alt: "Hands demonstrating dovetail rail, magnet seating, and Velcro strap attachment",
+          caption: "Dovetail rail and magnet seating",
+        },
+        {
+          id: "prototype-release-demo",
           src: `${base}/prototype-release-demo.png`,
           alt: "Demonstrating one-motion upward release of canister from dovetail mount",
-          objectFit: "contain",
+          caption: "One-motion upward release",
         },
         {
+          id: "prototype-backpack-side",
           src: `${base}/prototype-backpack-side.png`,
           alt: "Side view of prototype mounted on backpack shoulder strap outdoors",
-          objectFit: "contain",
+          caption: "Mounted on the shoulder strap",
         },
         {
+          id: "prototype-backpack-front",
+          src: `${base}/prototype-backpack-front.png`,
+          alt: "Front view of prototype mounted on backpack shoulder strap",
+          caption: "Front view on the backpack",
+        },
+        {
+          id: "prototype-strap-detail",
           src: `${base}/prototype-strap-detail.png`,
           alt: "Close-up of Velcro straps and holder on shoulder strap",
-          objectFit: "contain",
+          caption: "Velcro strap attachment detail",
         },
-      ],
-      spec: [
-        { label: "Fabrication", value: "PLA 3D print, Velcro straps" },
-        { label: "Mount point", value: "Backpack shoulder strap" },
-        { label: "Release", value: "Single upward dovetail motion" },
-        { label: "Status", value: "Functional prototype complete" },
+        {
+          id: "prototype-closeup",
+          src: `${base}/prototype-closeup.png`,
+          alt: "Close-up of the canister seated in the mount",
+          caption: "Canister seated in the mount",
+        },
       ],
     },
   ],

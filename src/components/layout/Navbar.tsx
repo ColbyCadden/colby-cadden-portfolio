@@ -56,7 +56,7 @@ export function Navbar() {
           onClick={(e) => handleNavClick(e, "#home")}
           className="text-sm font-semibold tracking-tight text-text-primary"
         >
-          ColbyOS
+          Colby Cadden - Portfolio
         </a>
 
         <ul className="flex items-center gap-6 sm:gap-8">

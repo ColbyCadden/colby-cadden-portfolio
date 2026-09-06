@@ -78,10 +78,6 @@ export function CaseStudyPage({ content }: CaseStudyPageProps) {
         <VersionTimeline versions={versions} />
       )}
 
-      {hasV3Direction && (
-        <V3DirectionPanel label={v3Direction.label} focus={v3Direction.focus} />
-      )}
-
       {visuals.length > 0 && <VisualGallery assets={visuals} />}
 
       {cadSection && <TechnicalSection section={cadSection} />}
@@ -92,6 +88,10 @@ export function CaseStudyPage({ content }: CaseStudyPageProps) {
       ))}
 
       {finalResult && <FinalResultGallery content={finalResult} />}
+
+      {hasV3Direction && (
+        <V3DirectionPanel label={v3Direction.label} focus={v3Direction.focus} />
+      )}
 
       {hasLogbook && logbook && <LogbookSection logbook={logbook} />}
 

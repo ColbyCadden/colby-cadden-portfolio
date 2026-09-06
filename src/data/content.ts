@@ -6,7 +6,7 @@ export const heroContent = {
   school: "University of Calgary",
   distinction: "Schulich Leader Scholar",
   intro:
-    "My name is Colby Cadden. I am a Mechanical Engineering student at the University of Calgary and a Schulich Leader Scholar. I want the site to present me as more than just an engineering student: someone interested in mechanical systems, robotics, automation, software, finance, product strategy, and building useful projects.",
+    "My name is Colby Cadden, I am a dual degree Mechanical Engineering and Finance student at the University of Calgary, and a Schulich Leader Scholar.\n\nI want the site to display my passion for mechanical systems, robotics, automation, finance, and leadership.",
   portrait: "/images/hero/portrait-hero-v2.jpg",
   ctaProjects: { label: "Projects", href: "#projects" },
   ctaAbout: { label: "About Me", href: "#about" },
@@ -15,7 +15,6 @@ export const heroContent = {
 
 export const projectsContent = {
   title: "Projects",
-  subtitle: "Robotics, hardware, hackathons, and full-stack builds.",
 };
 
 export const aboutContent = {

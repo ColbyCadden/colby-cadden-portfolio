@@ -93,8 +93,3 @@ export function storyImagePlacement(index: number, featured?: boolean) {
 
   return placements[index % placements.length];
 }
-
-export function storyImageSize(index: number, featured?: boolean): "sm" | "md" | "lg" {
-  if (featured) return "lg";
-  return index % 3 === 0 ? "md" : "sm";
-}
