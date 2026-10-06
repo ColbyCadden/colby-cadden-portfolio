@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Home } from "lucide-react";
 import type { Project } from "@/types";
@@ -7,22 +8,23 @@ import { getProjectNavigation } from "@/data/projects";
 import { ProjectCTA } from "@/components/projects/case-study/ProjectCTA";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FirstPlaceMedal } from "@/components/ui/FirstPlaceMedal";
+import { SecondPlaceMedal } from "@/components/ui/SecondPlaceMedal";
+import { cn } from "@/lib/utils";
 
 interface HackathonsProjectPageProps {
   project: Project;
 }
 
 function HackathonBadge({ entry }: { entry: HackathonEntry }) {
-  if (entry.badgeVariant !== "award") {
+  if (entry.badgeVariant !== "award" && entry.badgeVariant !== "runner-up") {
     return null;
   }
 
+  const Medal = entry.badgeVariant === "award" ? FirstPlaceMedal : SecondPlaceMedal;
+
   return (
     <div className="flex shrink-0 flex-col items-center" title={entry.badge}>
-      <FirstPlaceMedal
-        size="lg"
-        className="drop-shadow-[0_4px_14px_rgba(0,0,0,0.4)]"
-      />
+      <Medal size="lg" className="drop-shadow-[0_4px_14px_rgba(0,0,0,0.4)]" />
       <span className="sr-only">{entry.badge}</span>
     </div>
   );
@@ -59,7 +61,9 @@ function HackathonCard({ entry }: { entry: HackathonEntry }) {
             </p>
             <p className="mt-1 text-[12px] text-text-subtle">{entry.year}</p>
           </div>
-          {entry.badgeVariant === "award" && <HackathonBadge entry={entry} />}
+          {(entry.badgeVariant === "award" || entry.badgeVariant === "runner-up") && (
+            <HackathonBadge entry={entry} />
+          )}
         </div>
         {entry.sponsors && (
           <p className="mt-3 text-[12px] leading-relaxed text-text-subtle">
@@ -69,6 +73,29 @@ function HackathonCard({ entry }: { entry: HackathonEntry }) {
       </header>
 
       <div className="flex flex-1 flex-col gap-5 px-5 py-5 sm:px-6">
+        {entry.images && entry.images.length > 0 && (
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {entry.images.map((image) => (
+              <div
+                key={image.src}
+                className="relative aspect-[4/3] overflow-hidden rounded-md border border-border-subtle/70 bg-surface-elevated/15"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className={cn(
+                    "object-cover",
+                    image.objectPosition === "left" && "object-left",
+                    image.objectPosition === "right" && "object-right",
+                  )}
+                  sizes="(max-width: 640px) 50vw, 240px"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
         <DetailBlock title="Project">
           <p className="text-[14px] font-medium text-text-primary">
             {entry.projectName}

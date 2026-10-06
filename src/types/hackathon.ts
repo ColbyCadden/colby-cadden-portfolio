@@ -1,4 +1,10 @@
-export type HackathonBadgeVariant = "award" | "build";
+export type HackathonBadgeVariant = "award" | "runner-up" | "build";
+
+export interface HackathonImage {
+  src: string;
+  alt: string;
+  objectPosition?: "left" | "center" | "right";
+}
 
 export interface HackathonEntry {
   id: string;
@@ -15,4 +21,5 @@ export interface HackathonEntry {
   contributions: string[];
   technicalFocus: string[];
   result: string;
+  images?: HackathonImage[];
 }

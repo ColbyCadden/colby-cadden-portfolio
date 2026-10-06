@@ -127,7 +127,7 @@ export const projects: Project[] = [
     description:
       "Two 24-hour hackathon builds: a first-place GNSS accuracy project at GeoHacks 2026 and PrepDeck, an AI meal-planning app built at the Cursor 2026 Hackathon.",
     tags: ["Hackathon", "Full-Stack", "GNSS"],
-    thumbnail: "/images/projects/hackathons/geohacks-code.png",
+    thumbnail: "/images/projects/hackathons/presenter-closeup.png",
     heroImage: "/images/projects/hackathons/team.png",
     featured: true,
     year: "2026",
@@ -149,11 +149,11 @@ export const projects: Project[] = [
     ],
     home: {
       shortText:
-        "GeoHacks 2026 and Cursor 2026, working across multiple languages, with various event guidelines.",
+        "IEEE Industry Hackathon 2026 · GeoHacks 2026 · Cursor 2026 Hackathon",
       metadata:
-        "GeoHacks 2026 · Cursor 2026 · GNSS · Next.js · Gemini / Groq APIs",
+        "API Integration · LLM Agents · Python · Data Organization · Full-Stack Development",
       layout: "hackathon",
-      splitImage: "/images/projects/hackathons/team.png",
+      splitImage: "/images/projects/hackathons/team-tc-banner-fitted.jpg",
     },
   },
   {

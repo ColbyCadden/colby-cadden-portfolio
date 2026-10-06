@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { ProjectHomePreview } from "@/types";
 import { FadeIn } from "@/components/ui/Reveal";
 import { FirstPlaceMedal } from "@/components/ui/FirstPlaceMedal";
+import { SecondPlaceMedal } from "@/components/ui/SecondPlaceMedal";
 
 interface ProjectPreviewProps {
   project: ProjectHomePreview;
@@ -128,17 +129,21 @@ function ProjectVisual({
           <div className="relative aspect-[4/3] border-r border-border-subtle bg-surface-elevated">
             <Image
               src={project.thumbnail}
-              alt="GeoHacks GNSS project"
+              alt="Presenting the CityLink dispatch agent at the IEEE Industry Hackathon"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               sizes="(max-width: 768px) 100vw, 28vw"
             />
             <div
-              className="absolute left-3 top-3 rounded-md bg-background/75 p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/10 backdrop-blur-sm"
-              title="GeoHacks 2026, 1st Place"
+              className="absolute left-3 top-3 flex items-end gap-1 rounded-md bg-background/75 p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/10 backdrop-blur-sm"
+              title="GeoHacks 2026: 1st Place · IEEE Industry Hackathon 2026: 2nd Place"
             >
               <FirstPlaceMedal size="sm" />
-              <span className="sr-only">GeoHacks 2026 first place</span>
+              <SecondPlaceMedal size="sm" />
+              <span className="sr-only">
+                GeoHacks 2026 first place, IEEE Industry Hackathon 2026 second
+                place
+              </span>
             </div>
           </div>
           <div className="relative aspect-[4/3] bg-surface-elevated">
