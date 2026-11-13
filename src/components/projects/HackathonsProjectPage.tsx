@@ -126,16 +126,9 @@ function HackathonCard({ entry }: { entry: HackathonEntry }) {
         </DetailBlock>
 
         <DetailBlock title="Technical Focus">
-          <div className="flex flex-wrap gap-2">
-            {entry.technicalFocus.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-[11px] text-text-primary/80"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <p className="text-[13px] leading-relaxed text-text-muted">
+            {entry.technicalSummary ?? entry.technicalFocus.join(", ")}
+          </p>
         </DetailBlock>
 
         <DetailBlock title="Key Contributions">
@@ -167,16 +160,6 @@ export function HackathonsProjectPage({ project }: HackathonsProjectPageProps) {
 
   return (
     <div className="min-h-screen bg-surface-blueprint">
-      <div
-        className="pointer-events-none fixed inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(34,211,238,1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34,211,238,1) 1px, transparent 1px)
-          `,
-          backgroundSize: "48px 48px",
-        }}
-      />
 
       <header className="relative z-10 border-b border-accent-cyan/10 bg-surface-blueprint/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 lg:px-8">
@@ -198,7 +181,7 @@ export function HackathonsProjectPage({ project }: HackathonsProjectPageProps) {
       </header>
 
       <main className="relative z-10 mx-auto max-w-5xl px-6 py-12 lg:px-8 lg:py-16">
-        <div className="max-w-2xl">
+        <div>
           <h1 className="text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl lg:text-5xl">
             {project.title}
           </h1>

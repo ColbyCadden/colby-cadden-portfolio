@@ -22,6 +22,8 @@ export const waterborneRescueVesselCaseStudy: CaseStudyContent = {
     heroAlt:
       "Twin-hull rescue vessel navigating a test pool with simulated obstacles",
     hideHeroImage: true,
+    toolsSummary:
+      "The hull, roof, and propulsion were modelled in Fusion 360 and 3D printed for each iteration. The electronics run on a Raspberry Pi Pico programmed in Python, with Bluetooth remote control, servo actuation, and hand-soldered wiring for the motors and drivers.",
     tags: [
       "Fusion 360",
       "3D Printing",
@@ -140,17 +142,14 @@ export const waterborneRescueVesselCaseStudy: CaseStudyContent = {
       ],
       lesson:
         "First prints are diagnostic tools, plan for at least one throwaway geometry pass. They reveal volume constraints that CAD screenshots hide.",
-      image: `${base}/v2-hull-isometric.png`,
-      imageAlt: "V2 CAD model of the first printed twin-hull catamaran hull",
-      objectFit: "contain",
-      secondaryImage: `${base}/v2-fusion-views.png`,
-      secondaryImageAlt:
+      image: `${base}/v2-fusion-views.png`,
+      imageAlt:
         "Fusion 360 orthographic and isometric views of the first hull geometry",
-      secondaryObjectFit: "contain",
-      tertiaryImage: `${base}/v2-compartment-plan.png`,
-      tertiaryImageAlt:
+      objectFit: "contain",
+      secondaryImage: `${base}/v2-compartment-plan.png`,
+      secondaryImageAlt:
         "Annotated twin-hull compartment plan with payload, motor pods, and sealed electronics zones",
-      tertiaryObjectFit: "contain",
+      secondaryObjectFit: "contain",
     },
     {
       id: "v3",
@@ -174,13 +173,23 @@ export const waterborneRescueVesselCaseStudy: CaseStudyContent = {
       ],
       lesson:
         "Sealed compartments need CAD-level features, lips, tunnels, and drain paths, not tape-and-sealant fixes on the hull seam.",
-      image: `${base}/design-v7-three-view.png`,
-      imageAlt: "V3 CAD renders of hull, interior compartments, and front profile",
-      objectFit: "contain",
-      secondaryImage: `${base}/test-v7-bench-prototype.png`,
-      secondaryImageAlt:
+      image: `${base}/test-v7-bench-prototype.png`,
+      imageAlt:
         "V7 physical prototype on the bench with servo, power switch, and geared propulsion",
+      objectFit: "contain",
+      secondaryImage: `${base}/v3-iso.png`,
+      secondaryImageAlt: "V3 CAD isometric view of the hull with roof and propulsion",
       secondaryObjectFit: "contain",
+      tertiaryImage: `${base}/v3-interior.png`,
+      tertiaryImageAlt: "V3 CAD view of the hull interior compartments",
+      tertiaryObjectFit: "contain",
+      extraImages: [
+        {
+          src: `${base}/v3-front.png`,
+          alt: "V3 CAD front profile showing the twin pontoons",
+          objectFit: "contain",
+        },
+      ],
     },
     {
       id: "v4",

@@ -17,7 +17,7 @@ export function ProjectsSection() {
           <SectionHeading title={projectsContent.title} />
         </FadeIn>
 
-        <div className="pt-4 lg:pt-6">
+        <div className="pt-8 lg:pt-10">
           {homeProjectPreviews.map((project, index) => (
             <ProjectPreview key={project.slug} project={project} index={index} />
           ))}

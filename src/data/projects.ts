@@ -36,7 +36,7 @@ export const projects: Project[] = [
       shortText:
         "In-progress robotic arm prototype focused on end-effector accuracy, torque limits, and mechanical iteration.",
       metadata:
-        "Fusion 360 · PLA Prototypes · Servo Actuation · ToF Sensor",
+        "Fusion 360 · PLA Prototypes · Servo Actuation · ToF Sensors",
       resultLine: "Personal Mechatronics Project",
       layout: "mechanical",
       secondaryImage: "/images/projects/robotic-arm/gripper-v1-assembled-front.png",
@@ -76,9 +76,9 @@ export const projects: Project[] = [
     ],
     home: {
       shortText:
-        "Remote-controlled rescue-vessel prototype designed for obstacle navigation, payload transport, buoyancy, and validation testing.",
+        "Remote-controlled rescue vessel prototype designed for obstacle navigation, payload transport, buoyancy, and maneuverability.",
       metadata:
-        "CAD · 3D Printing · Raspberry Pi Pico · Payload Stability · Bluetooth Control",
+        "Fusion 360 · Raspberry Pi · Propeller Dynamics · Bluetooth Integration",
       resultLine: "ENGG 200 Design Project",
       layout: "vessel",
       secondaryImage:
@@ -112,9 +112,9 @@ export const projects: Project[] = [
     ],
     home: {
       shortText:
-        "Dovetail quick-release mount for bear spray — designed for fast deployment from a backpack shoulder strap.",
+        "Dovetail quick-release mount for bear spray. Designed for fast deployment from a backpack shoulder strap.",
       metadata:
-        "SolidWorks · PLA Prototype · Dovetail Joint · Velcro Mount · ENME 101",
+        "SolidWorks · PLA Iterations · Velcro Mount",
       resultLine: "ENME 101 Team Mini-Project",
       layout: "mechanical",
       secondaryImage: "/images/projects/bear-spray-quick-release/cad-assembly-iso.png",
@@ -219,6 +219,8 @@ export const projects: Project[] = [
       "Framer Motion",
       "Vercel",
     ],
+    stackSummary:
+      "The site is written in TypeScript with Next.js, styled with Tailwind CSS, animated with Framer Motion, and deployed on Vercel.",
     images: [],
     home: {
       shortText:

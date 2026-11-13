@@ -32,6 +32,8 @@ export interface Project {
   overview: string;
   highlights: string[];
   techStack: string[];
+  /** Plain sentence describing the tools used */
+  stackSummary?: string;
   images: string[];
   home: ProjectHomeFields;
   /** No hero or gallery images, for meta projects like this site */
@@ -61,6 +63,7 @@ export interface Achievement {
   id: string;
   title: string;
   subtitle?: string;
+  description?: string;
   tier: "premier" | "standard";
   proofImage?: string;
 }

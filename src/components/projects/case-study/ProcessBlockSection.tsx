@@ -17,45 +17,90 @@ function GroupPanelImage({
   image: CaptionedImage;
   fillCell?: boolean;
 }) {
-  const isPortrait = image.aspectRatio === "portrait";
-
-  const gridStyle = image.gridCell
-    ? {
-        ...(image.gridCell.colSpan
-          ? {
-              gridColumn: `${image.gridCell.colStart ?? "auto"} / span ${image.gridCell.colSpan}`,
-            }
-          : image.gridCell.colStart
-            ? { gridColumnStart: image.gridCell.colStart }
-            : {}),
-        ...(image.gridCell.rowSpan
-          ? {
-              gridRow: `${image.gridCell.rowStart ?? "auto"} / span ${image.gridCell.rowSpan}`,
-            }
-          : image.gridCell.rowStart
-            ? { gridRowStart: image.gridCell.rowStart }
-            : {}),
-      }
+  const cell = image.gridCell;
+  const gridStyle = cell
+    ? ({
+        "--gc": cell.colSpan
+          ? `${cell.colStart ?? "auto"} / span ${cell.colSpan}`
+          : `${cell.colStart ?? "auto"}`,
+        "--gr": cell.rowSpan
+          ? `${cell.rowStart ?? "auto"} / span ${cell.rowSpan}`
+          : `${cell.rowStart ?? "auto"}`,
+      } as React.CSSProperties)
     : undefined;
+
+  // Renders and drawings sit directly on the page at their natural shape.
+  // Photos fill a portrait tile.
+  const isRender = image.objectFit === "contain";
+
+  if (isRender && !fillCell) {
+    return (
+      <figure
+        className={cn(
+          "min-w-0 self-center",
+          cell && "sm:[grid-column:var(--gc)] sm:[grid-row:var(--gr)]",
+        )}
+        style={gridStyle}
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={800}
+          height={600}
+          className="h-auto w-full rounded-md"
+          sizes="(max-width: 640px) 50vw, 400px"
+        />
+      </figure>
+    );
+  }
+
+  if (isRender && fillCell) {
+    return (
+      <figure
+        className={cn(
+          "min-w-0 self-center sm:h-full",
+          (cell?.colSpan ?? 1) >= 2 && "col-span-2",
+          cell && "sm:[grid-column:var(--gc)] sm:[grid-row:var(--gr)]",
+        )}
+        style={gridStyle}
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={800}
+          height={600}
+          className="h-auto w-full rounded-md sm:h-full sm:object-contain"
+          sizes="(max-width: 640px) 50vw, 400px"
+        />
+      </figure>
+    );
+  }
 
   return (
     <figure
-      className={cn("min-w-0", fillCell && "h-full")}
+      className={cn(
+        "min-w-0",
+        fillCell && "h-full",
+        cell && "sm:[grid-column:var(--gc)] sm:[grid-row:var(--gr)]",
+      )}
       style={gridStyle}
     >
       <div
         className={cn(
-          "flex items-center justify-center rounded-md border border-border-subtle/70 bg-[#f4f4f4] p-2 sm:p-2.5",
-          fillCell ? "h-full min-h-28" : "h-28 sm:h-32",
+          "relative overflow-hidden rounded-md",
+          !isRender && "border border-border-subtle/70",
+          fillCell ? "h-full min-h-32" : "aspect-[3/4]",
         )}
       >
         <Image
           src={image.src}
           alt={image.alt}
-          width={isPortrait ? 769 : 800}
-          height={isPortrait ? 1024 : 600}
-          className="h-full w-full object-contain object-center"
-          sizes="(max-width: 640px) 30vw, 200px"
+          fill
+          className={cn(
+            "object-center",
+            isRender ? "object-contain" : "object-cover",
+          )}
+          sizes="(max-width: 640px) 50vw, 320px"
         />
       </div>
     </figure>
@@ -65,6 +110,7 @@ function GroupPanelImage({
 function ImageGroupPanel({ group }: { group: ProcessImageGroup }) {
   const imageCount = group.images.length;
   const useCustomGrid = Boolean(group.grid);
+  const allRenders = group.images.every((img) => img.objectFit === "contain");
 
   return (
     <div className="rounded-md border border-border-subtle/80 bg-surface-elevated/10 p-4 sm:p-5">
@@ -74,16 +120,21 @@ function ImageGroupPanel({ group }: { group: ProcessImageGroup }) {
 
       <div
         className={cn(
-          "mt-3 grid gap-3",
-          !useCustomGrid &&
-            (imageCount <= 3 ? "grid-cols-3" : "grid-cols-2 sm:grid-cols-4"),
+          "mt-3 grid items-center gap-3",
+          useCustomGrid
+            ? "grid-cols-2 sm:[grid-template-columns:var(--cols)] sm:[grid-template-rows:var(--rows)]"
+            : imageCount <= 3
+              ? allRenders
+                ? "grid-cols-1 sm:grid-cols-3"
+                : "grid-cols-2 sm:grid-cols-3"
+              : "grid-cols-2 sm:grid-cols-4",
         )}
         style={
           useCustomGrid
-            ? {
-                gridTemplateColumns: `repeat(${group.grid!.columns}, minmax(0, 1fr))`,
-                gridTemplateRows: `repeat(${group.grid!.rows}, minmax(7rem, 8rem))`,
-              }
+            ? ({
+                "--cols": `repeat(${group.grid!.columns}, minmax(0, 1fr))`,
+                "--rows": `repeat(${group.grid!.rows}, minmax(8rem, 11rem))`,
+              } as React.CSSProperties)
             : undefined
         }
       >
@@ -134,12 +185,12 @@ export function ProcessBlockSection({
           </div>
         )}
         {block.intro && (
-          <p className="max-w-2xl text-[13px] leading-relaxed text-text-muted sm:text-[14px]">
+          <p className="text-[13px] leading-relaxed text-text-muted sm:text-[14px]">
             {block.intro}
           </p>
         )}
         {block.bullets && (
-          <ul className="flex max-w-2xl flex-col gap-2">
+          <ul className="flex flex-col gap-2">
             {block.bullets.map((bullet) => (
               <li
                 key={bullet}

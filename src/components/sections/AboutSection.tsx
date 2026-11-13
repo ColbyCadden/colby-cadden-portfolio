@@ -15,7 +15,7 @@ export function AboutSection() {
 
       <div className="relative mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
         <FadeIn>
-          <div className="max-w-2xl">
+          <div>
             <h2 className="font-display text-2xl font-normal tracking-[-0.01em] text-text-primary sm:text-3xl">
               {aboutContent.headline}
             </h2>
@@ -98,9 +98,7 @@ export function AboutSection() {
           </FadeIn>
         </div>
 
-        <div className="mt-16 border-t border-border-subtle pt-16 lg:mt-20 lg:pt-20">
-          <SiteFooter />
-        </div>
+        <SiteFooter />
       </div>
     </section>
   );

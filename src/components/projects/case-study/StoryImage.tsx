@@ -37,7 +37,7 @@ export function StoryImage({
   const frameClass = featured
     ? "aspect-[16/10] w-full"
     : gridCell
-      ? "aspect-[4/3] w-full max-h-24 sm:max-h-28"
+      ? "aspect-[4/3] w-full"
       : cn(aspect, sizeClasses[size]);
 
   return (
@@ -63,7 +63,7 @@ export function StoryImage({
               featured
                 ? "(max-width: 768px) 92vw, 720px"
                 : gridCell
-                  ? "(max-width: 768px) 92vw, 240px"
+                  ? "(max-width: 768px) 50vw, 320px"
                   : "(max-width: 768px) 88vw, 320px"
             }
           />

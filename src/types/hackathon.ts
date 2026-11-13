@@ -20,6 +20,8 @@ export interface HackathonEntry {
   team: string[];
   contributions: string[];
   technicalFocus: string[];
+  /** Plain sentence describing the tools and skills used */
+  technicalSummary?: string;
   result: string;
   images?: HackathonImage[];
 }

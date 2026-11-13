@@ -17,14 +17,14 @@ export function ProjectCTA({ previousProject, nextProject }: ProjectCTAProps) {
 
   return (
     <section className="border-t border-accent-cyan/10 py-12 lg:py-14">
-      <div className="flex flex-col items-stretch justify-between gap-6 sm:flex-row sm:items-center">
+      <div className="grid grid-cols-2 items-stretch gap-3 sm:gap-6">
         {previousProject ? (
           <Link
             href={previousProject.href}
-            className="group flex items-center gap-3 rounded-lg border border-accent-cyan/20 bg-surface-elevated/30 px-5 py-3 transition-colors hover:border-accent-cyan/40"
+            className="group flex min-w-0 items-center gap-3 rounded-lg border border-accent-cyan/20 bg-surface-elevated/30 px-3 py-3 sm:px-5 transition-colors hover:border-accent-cyan/40"
           >
             <ArrowLeft className="h-4 w-4 text-accent-cyan/60 transition-transform group-hover:-translate-x-0.5" />
-            <div>
+            <div className="min-w-0">
               <span className="block font-mono text-[10px] uppercase tracking-wider text-text-muted/60">
                 Previous Case File
               </span>
@@ -34,15 +34,15 @@ export function ProjectCTA({ previousProject, nextProject }: ProjectCTAProps) {
             </div>
           </Link>
         ) : (
-          <div className="hidden sm:block sm:flex-1" />
+          <div />
         )}
 
         {nextProject && (
           <Link
             href={nextProject.href}
-            className="group ml-auto flex items-center gap-3 rounded-lg border border-accent-cyan/20 bg-surface-elevated/30 px-5 py-3 transition-colors hover:border-accent-cyan/40"
+            className="group col-start-2 flex min-w-0 items-center justify-end gap-3 rounded-lg border border-accent-cyan/20 bg-surface-elevated/30 px-3 py-3 sm:px-5 transition-colors hover:border-accent-cyan/40"
           >
-            <div className="text-right">
+            <div className="min-w-0 text-right">
               <span className="block font-mono text-[10px] uppercase tracking-wider text-text-muted/60">
                 Next Case File
               </span>

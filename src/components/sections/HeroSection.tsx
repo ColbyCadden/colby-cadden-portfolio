@@ -6,6 +6,7 @@ import { animationConfig } from "@/config/animation";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { HeroPortraitFrame } from "@/components/sections/HeroPortraitFrame";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ArrowUpRight } from "lucide-react";
 
 export function HeroSection() {
   const reducedMotion = useReducedMotion();
@@ -31,28 +32,28 @@ export function HeroSection() {
   return (
     <section id="home" className="border-b border-border-subtle pt-32 pb-16 lg:pt-36 lg:pb-20">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-center sm:justify-between sm:gap-12">
+        <div className="flex flex-row items-start justify-between gap-5 sm:items-center sm:gap-12">
           <motion.div {...fade(0)} className="min-w-0 flex-1">
-            <h1 className="font-display text-[2.25rem] font-normal uppercase tracking-[0.03em] text-text-primary sm:text-[2.65rem] lg:text-[2.9rem]">
+            <h1 className="font-display text-[2rem] font-normal leading-[1.05] uppercase tracking-[0.03em] text-text-primary sm:text-[2.65rem] lg:text-[3.6rem]">
               {heroContent.name}
             </h1>
 
-            <div className="mt-5 h-px w-12 bg-border-strong" />
+            <div className="mt-5 h-px w-12 bg-border-strong lg:mt-6 lg:w-24" />
 
-            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-text-muted">
+            <p className="mt-5 text-[15px] leading-relaxed text-text-muted lg:mt-6 lg:text-[17px]">
               {programsLine}
               <span className="mx-2 text-text-subtle">·</span>
               {heroContent.school}
             </p>
 
-            <p className="mt-3 font-display text-lg leading-snug text-text-primary sm:text-xl">
+            <p className="mt-3 font-display text-lg leading-snug text-text-primary sm:text-xl lg:text-2xl">
               {heroContent.distinction}
             </p>
           </motion.div>
 
           <motion.div
             {...fade(0.08)}
-            className="flex shrink-0 justify-center sm:justify-end"
+            className="flex shrink-0 justify-end"
           >
             <HeroPortraitFrame
               src={heroContent.portrait}
@@ -63,7 +64,7 @@ export function HeroSection() {
 
         <motion.div
           {...fade(0.14)}
-          className="mt-16 max-w-xl border-t border-border-subtle pt-12 lg:mt-20 lg:max-w-2xl lg:pt-14"
+          className="mt-12 border-t border-border-subtle pt-10 lg:mt-14 lg:pt-12"
         >
           <p className="whitespace-pre-line text-[15px] leading-[1.9] text-text-muted sm:text-[16px] sm:leading-[1.85]">
             {heroContent.intro}
@@ -86,7 +87,10 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {heroContent.ctaLinkedIn.label}
+              <span className="inline-flex items-center gap-1.5">
+                {heroContent.ctaLinkedIn.label}
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </span>
             </ButtonLink>
           </div>
         </motion.div>

@@ -21,7 +21,7 @@ export function TechnicalSection({ section }: TechnicalSectionProps) {
       >
         <div className="space-y-4 px-5 py-5 sm:px-6 sm:py-6">
           {section.body && (
-            <p className="text-sm leading-relaxed text-text-muted sm:text-[15px]">
+            <p className="whitespace-pre-line text-sm leading-relaxed text-text-muted sm:text-[15px]">
               {section.body}
             </p>
           )}

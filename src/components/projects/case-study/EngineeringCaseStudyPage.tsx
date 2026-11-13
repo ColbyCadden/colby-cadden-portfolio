@@ -42,38 +42,36 @@ export function EngineeringCaseStudyPage({ content }: EngineeringCaseStudyPagePr
         >
           <div className="flex flex-col gap-5">
             {objective.body && (
-              <p className="max-w-2xl text-[14px] leading-relaxed text-text-muted sm:text-[15px]">
+              <p className="text-[14px] leading-relaxed text-text-muted sm:text-[15px]">
                 {objective.body}
               </p>
             )}
             {objectiveImages.length > 0 && (
-              <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-[1.36fr_1.36fr_1.98fr]">
                 {objectiveImages.map((image, index) => {
                   const isPool = index === objectiveImages.length - 1;
 
                   return (
                     <div
                       key={image.id}
-                      className={
-                        isPool
-                          ? "w-full min-w-0 flex-1"
-                          : "w-full shrink-0 sm:w-[min(22%,190px)]"
-                      }
+                      className={isPool ? "col-span-2 lg:col-span-1" : undefined}
                     >
-                      <div className="overflow-hidden rounded-md border border-border-subtle/70 bg-white">
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          width={isPool ? 1024 : 755}
-                          height={isPool ? 517 : 555}
-                          className="h-auto w-full object-contain"
-                          sizes={
-                            isPool
-                              ? "(max-width: 640px) 90vw, 480px"
-                              : "(max-width: 640px) 90vw, 190px"
-                          }
-                        />
-                      </div>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={isPool ? 1024 : 755}
+                        height={isPool ? 517 : 555}
+                        className={
+                          isPool
+                            ? "aspect-[1024/517] h-auto w-full rounded-md object-cover"
+                            : "aspect-[755/555] h-auto w-full rounded-md object-cover"
+                        }
+                        sizes={
+                          isPool
+                            ? "(max-width: 1024px) 92vw, 520px"
+                            : "(max-width: 1024px) 46vw, 360px"
+                        }
+                      />
                     </div>
                   );
                 })}
@@ -81,10 +79,6 @@ export function EngineeringCaseStudyPage({ content }: EngineeringCaseStudyPagePr
             )}
           </div>
         </CaseStudySection>
-      )}
-
-      {developmentVersions && developmentVersions.length > 0 && (
-        <DevelopmentTimeline versions={developmentVersions} />
       )}
 
       {designBlock && (
@@ -120,12 +114,16 @@ export function EngineeringCaseStudyPage({ content }: EngineeringCaseStudyPagePr
               compactImages
             />
             {logbook?.statusNote && (
-              <ProjectCallout label="Outcome" className="max-w-2xl">
+              <ProjectCallout label="Outcome">
                 {logbook.statusNote}
               </ProjectCallout>
             )}
           </div>
         </CaseStudySection>
+      )}
+
+      {developmentVersions && developmentVersions.length > 0 && (
+        <DevelopmentTimeline versions={developmentVersions} />
       )}
 
       <ProjectCTA

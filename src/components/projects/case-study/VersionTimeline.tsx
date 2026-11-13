@@ -33,58 +33,41 @@ export function VersionTimeline({
     <section className="py-10 lg:py-12">
       <SectionHeading title={label} level="subsection" className="mb-5" />
 
-      <div className="grid gap-8 lg:grid-cols-[0.4fr_0.6fr] lg:gap-10">
-        <div className="relative space-y-0">
-          {versions.map((version, index) => {
-            const isActive = version.id === activeId;
-            const isLast = index === versions.length - 1;
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+        {versions.map((version) => {
+          const isActive = version.id === activeId;
 
-            return (
-              <button
-                key={version.id}
-                type="button"
-                onClick={() => setActiveId(version.id)}
-                className="group relative flex w-full gap-4 pb-8 text-left last:pb-0"
-              >
-                {!isLast && (
-                  <span className="absolute left-[11px] top-6 h-[calc(100%-8px)] w-px bg-accent-cyan/15" />
+          return (
+            <button
+              key={version.id}
+              type="button"
+              onClick={() => setActiveId(version.id)}
+              aria-pressed={isActive}
+              className={cn(
+                "flex flex-col items-start rounded-lg border px-4 py-2 text-left transition-colors",
+                isActive
+                  ? "border-accent-cyan bg-accent-cyan/15 text-accent-cyan"
+                  : "border-border-subtle bg-surface-elevated text-text-muted hover:border-accent-cyan/40 hover:text-text-primary",
+              )}
+            >
+              <span className="font-mono text-xs uppercase tracking-wider">
+                {version.version}
+              </span>
+              <span
+                className={cn(
+                  "mt-0.5 text-[12px] leading-snug",
+                  isActive ? "text-text-primary" : "text-text-muted",
                 )}
+              >
+                {version.title}
+              </span>
+            </button>
+          );
+        })}
+      </div>
 
-                <span
-                  className={cn(
-                    "relative z-10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border font-mono text-[10px] transition-colors",
-                    isActive
-                      ? "border-accent-cyan/60 bg-accent-cyan/15 text-accent-cyan"
-                      : "border-border-subtle bg-surface-elevated text-text-muted group-hover:border-accent-cyan/30",
-                  )}
-                >
-                  {version.version.replace("V", "")}
-                </span>
-
-                <div className="flex-1 pt-0.5">
-                  <span
-                    className={cn(
-                      "font-mono text-[10px] uppercase tracking-wider",
-                      isActive ? "text-accent-cyan" : "text-text-muted/60",
-                    )}
-                  >
-                    {version.version}
-                  </span>
-                  <p
-                    className={cn(
-                      "mt-0.5 text-sm font-medium transition-colors",
-                      isActive ? "text-text-primary" : "text-text-muted",
-                    )}
-                  >
-                    {version.title}
-                  </p>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        <BlueprintFrame label={`${active.version}, DETAIL`} variant="panel">
+      <div className="mt-6">
+        <BlueprintFrame variant="panel">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}

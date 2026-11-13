@@ -42,7 +42,7 @@ export function HeroPortraitFrame({ src, alt }: HeroPortraitFrameProps) {
 
   return (
     <motion.div
-      className="relative w-[190px] [perspective:900px] sm:w-[210px] lg:w-[230px]"
+      className="relative w-[120px] [perspective:900px] sm:w-[210px] lg:w-[230px]"
       style={motionEnabled ? { rotateX, rotateY } : undefined}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

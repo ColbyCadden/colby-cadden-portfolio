@@ -29,6 +29,11 @@ export function AchievementProof({ achievement }: AchievementProofProps) {
       {achievement.subtitle && (
         <p className="mt-1 text-[13px] text-text-muted">{achievement.subtitle}</p>
       )}
+      {achievement.description && (
+        <p className="mt-2 text-[13px] leading-relaxed text-text-subtle">
+          {achievement.description}
+        </p>
+      )}
       {achievement.proofImage && (
         <div className="mt-3 overflow-hidden rounded-md ring-1 ring-border-subtle">
           <Image

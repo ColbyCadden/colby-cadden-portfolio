@@ -10,7 +10,7 @@ export const hackathons: HackathonEntry[] = [
     event: "Annual IEEE Southern Alberta YP Industry Hackathon, 48-hour event",
     sponsors:
       "Sponsored by ElevenLabs, Databricks, Volaris Group, Hunter Hub, Eudaimonia, and TechConnect Alberta; hosted by IEEE Southern Alberta Section Young Professionals",
-    projectName: "CityLink — 311 Dispatch Prioritization Agent",
+    projectName: "CityLink: 311 Dispatch Prioritization Agent",
     summary:
       "Built an agentic dispatch system for Calgary's 311 service, replacing first-in-first-out ticket handling with a priority-scored, auto-replanning scheduler. Using real Open Calgary 311 data, the system scores open tickets by hazard type, wait time, and duplicate reports, assigns them across crews within geographic zones, and automatically re-optimizes when a crew goes offline or a high-priority case is added. An LLM layer interprets plain-language crew updates into structured events for the scheduler, while the underlying prioritization and assignment logic runs on deterministic algorithms. The team placed second overall out of 200+ participants.",
     role: [
@@ -32,6 +32,8 @@ export const hackathons: HackathonEntry[] = [
       "Coordinated the team's GitHub repository structure and resolved integration issues across four parallel workstreams",
       "Presented the architecture and results in two live judging rounds, placing 2nd overall",
     ],
+    technicalSummary:
+      "We built the pipeline in Python on real City of Calgary 311 open data, using K-means clustering and priority scoring to rank requests and scheduling algorithms to plan the work. The LLM agent runs on the Claude API, the demo was built in Streamlit, and the team shared code through Git.",
     technicalFocus: [
       "Python",
       "LLM integration (Claude API)",
@@ -99,6 +101,8 @@ export const hackathons: HackathonEntry[] = [
       "Collected and organized field data under a 24-hour deadline",
       "Presented final results and methodology to the judging panel",
     ],
+    technicalSummary:
+      "I processed RTK and PPP satellite data in Python using VS Code, transforming positions between geodetic and Cartesian coordinate frames and running accuracy analysis on each solution. The project also involved collecting GNSS data.",
     technicalFocus: [
       "GNSS",
       "RTK data",
@@ -144,6 +148,8 @@ export const hackathons: HackathonEntry[] = [
       "Integrated Gemini and Groq through API routes for recipe generation",
       "Generated structured meal plans and shopping lists from existing ingredients",
     ],
+    technicalSummary:
+      "The app was built with Next.js, React, TypeScript, and Tailwind CSS. AI features call the Gemini and Groq APIs from the server, and barcode scanning uses the native BarcodeDetector API along with the html5-qrcode and ZXing libraries.",
     technicalFocus: [
       "Next.js",
       "React",

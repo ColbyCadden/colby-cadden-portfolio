@@ -16,16 +16,6 @@ export function PortfolioProjectPage({ project }: PortfolioProjectPageProps) {
 
   return (
     <div className="min-h-screen bg-surface-blueprint">
-      <div
-        className="pointer-events-none fixed inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(34,211,238,1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34,211,238,1) 1px, transparent 1px)
-          `,
-          backgroundSize: "48px 48px",
-        }}
-      />
 
       <header className="relative z-10 border-b border-accent-cyan/10 bg-surface-blueprint/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 lg:px-8">
@@ -62,7 +52,7 @@ export function PortfolioProjectPage({ project }: PortfolioProjectPageProps) {
           </div>
         </div>
 
-        <div className="mt-12 max-w-3xl space-y-10">
+        <div className="mt-12 space-y-10">
           <section>
             <SectionHeading title="Writeup" level="subsection" className="mb-4" />
             {project.writeup ? (
@@ -105,16 +95,9 @@ export function PortfolioProjectPage({ project }: PortfolioProjectPageProps) {
 
           <section>
             <SectionHeading title="Stack" level="subsection" className="mb-4" />
-            <div className="flex flex-wrap gap-2.5">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-white/[0.09] bg-white/[0.04] px-3 py-1.5 text-[12px] tracking-[0.01em] text-text-primary/78"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+            <p className="text-[14px] leading-[1.7] text-text-muted">
+              {project.stackSummary ?? project.techStack.join(", ")}
+            </p>
           </section>
         </div>
 

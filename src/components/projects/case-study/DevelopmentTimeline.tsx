@@ -37,6 +37,7 @@ function getVersionImages(version: DevelopmentVersion): VersionImage[] {
       alt: version.tertiaryImageAlt ?? version.title,
       objectFit: version.tertiaryObjectFit,
     },
+    ...(version.extraImages ?? []),
   ].filter(Boolean) as VersionImage[];
 }
 
@@ -95,7 +96,8 @@ function TimelineImageCell({
   return (
     <div
       className={cn(
-        "relative min-h-[200px] overflow-hidden rounded-md border border-border-subtle bg-[#121110] sm:min-h-[240px] lg:min-h-0",
+        "relative min-h-[200px] overflow-hidden rounded-md sm:min-h-[240px] lg:min-h-0",
+        !isContain && "border border-border-subtle",
         className,
       )}
     >
@@ -106,7 +108,7 @@ function TimelineImageCell({
         priority={priority}
         className={cn(
           isContain
-            ? "object-contain object-center p-3 sm:p-4"
+            ? "object-contain object-center"
             : "object-cover object-center",
         )}
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
@@ -144,6 +146,21 @@ function VersionImageGallery({ version }: { version: DevelopmentVersion }) {
     );
   }
 
+  if (images.length >= 4) {
+    return (
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        {images.map((image, index) => (
+          <TimelineImageCell
+            key={image.src}
+            image={image}
+            priority={index === 0}
+            className="aspect-[4/3] min-h-0 sm:min-h-0"
+          />
+        ))}
+      </div>
+    );
+  }
+
   const [primary, ...rest] = images;
 
   return (
@@ -174,7 +191,7 @@ function VersionTextContent({ version }: { version: DevelopmentVersion }) {
         <h4 className="mt-1 text-lg font-medium text-text-primary sm:text-xl">
           {version.title}
         </h4>
-        <p className="mt-2 max-w-3xl text-[13px] leading-relaxed text-text-muted sm:text-[14px]">
+        <p className="mt-2 text-[13px] leading-relaxed text-text-muted sm:text-[14px]">
           {version.summary}
         </p>
       </div>
@@ -231,101 +248,34 @@ export function DevelopmentTimeline({ versions }: DevelopmentTimelineProps) {
       title="Development Timeline"
       subtitle="Four major iterations from concept sketch to pool-validated prototype."
     >
-      {/* Desktop horizontal stepper */}
-      <div className="hidden md:block">
-        <div className="relative flex items-start justify-between gap-2">
-          <div
-            className="absolute left-0 right-0 top-3 h-px bg-border-subtle"
-            aria-hidden
-          />
-          {versions.map((version) => {
-            const isActive = version.id === activeId;
-
-            return (
-              <button
-                key={version.id}
-                type="button"
-                onClick={() => setActiveId(version.id)}
-                className="group relative z-10 flex flex-1 flex-col items-center gap-1.5 px-1 text-center"
-              >
-                <span
-                  className={cn(
-                    "flex h-6 w-6 items-center justify-center rounded-full border font-mono text-[10px] transition-all duration-200",
-                    isActive
-                      ? "border-accent-cyan/60 bg-accent-cyan/15 text-accent-cyan shadow-[0_0_12px_rgba(56,189,248,0.15)]"
-                      : "border-border-subtle bg-surface-base text-text-muted group-hover:border-accent-cyan/35 group-hover:text-text-primary",
-                  )}
-                >
-                  {version.label.replace("V", "")}
-                </span>
-                <span
-                  className={cn(
-                    "font-mono text-[10px] uppercase tracking-wider transition-colors",
-                    isActive ? "text-accent-cyan" : "text-text-muted/60",
-                  )}
-                >
-                  {version.label}
-                </span>
-                <span
-                  className={cn(
-                    "max-w-[9rem] text-[12px] leading-snug transition-colors",
-                    isActive
-                      ? "font-medium text-text-primary"
-                      : "text-text-muted group-hover:text-text-muted/90",
-                  )}
-                >
-                  {version.title}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Mobile vertical stepper */}
-      <div className="space-y-0 md:hidden">
-        {versions.map((version, index) => {
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+        {versions.map((version) => {
           const isActive = version.id === activeId;
-          const isLast = index === versions.length - 1;
 
           return (
             <button
               key={version.id}
               type="button"
               onClick={() => setActiveId(version.id)}
-              className="group relative flex w-full gap-3 pb-4 text-left last:pb-0"
-            >
-              {!isLast && (
-                <span className="absolute left-[11px] top-6 h-[calc(100%-12px)] w-px bg-border-subtle" />
+              aria-pressed={isActive}
+              className={cn(
+                "flex flex-col items-start rounded-lg border px-4 py-2 text-left transition-colors",
+                isActive
+                  ? "border-accent-cyan bg-accent-cyan/15 text-accent-cyan"
+                  : "border-border-subtle bg-surface-elevated text-text-muted hover:border-accent-cyan/40 hover:text-text-primary",
               )}
+            >
+              <span className="font-mono text-xs uppercase tracking-wider">
+                {version.label}
+              </span>
               <span
                 className={cn(
-                  "relative z-10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border font-mono text-[10px] transition-colors",
-                  isActive
-                    ? "border-accent-cyan/60 bg-accent-cyan/15 text-accent-cyan"
-                    : "border-border-subtle bg-surface-elevated text-text-muted",
+                  "mt-0.5 text-[12px] leading-snug",
+                  isActive ? "text-text-primary" : "text-text-muted",
                 )}
               >
-                {version.label.replace("V", "")}
+                {version.title}
               </span>
-              <div className="flex-1 pt-0.5">
-                <span
-                  className={cn(
-                    "font-mono text-[10px] uppercase tracking-wider",
-                    isActive ? "text-accent-cyan" : "text-text-muted/60",
-                  )}
-                >
-                  {version.label}
-                </span>
-                <p
-                  className={cn(
-                    "mt-0.5 text-sm font-medium",
-                    isActive ? "text-text-primary" : "text-text-muted",
-                  )}
-                >
-                  {version.title}
-                </p>
-              </div>
             </button>
           );
         })}

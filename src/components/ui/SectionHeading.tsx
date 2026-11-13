@@ -20,7 +20,7 @@ export function SectionHeading({
     tone === "light" ? "text-text-on-light-muted" : "text-text-muted";
 
   return (
-    <div className={`max-w-2xl ${className}`.trim()}>
+    <div className={className}>
       {isSection ? (
         <h2
           className={`font-display text-2xl font-normal tracking-[-0.01em] sm:text-3xl ${titleClass}`}

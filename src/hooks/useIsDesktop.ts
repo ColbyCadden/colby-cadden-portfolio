@@ -1,22 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-function getIsDesktop(breakpoint: number): boolean {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia(`(min-width: ${breakpoint}px)`).matches;
-}
+import { useCallback, useSyncExternalStore } from "react";
 
 export function useIsDesktop(breakpoint = 1024): boolean {
-  const [isDesktop, setIsDesktop] = useState(() => getIsDesktop(breakpoint));
+  const query = `(min-width: ${breakpoint}px)`;
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(`(min-width: ${breakpoint}px)`);
-    const update = () => setIsDesktop(mediaQuery.matches);
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      const mediaQuery = window.matchMedia(query);
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    },
+    [query],
+  );
 
-    mediaQuery.addEventListener("change", update);
-    return () => mediaQuery.removeEventListener("change", update);
-  }, [breakpoint]);
-
-  return isDesktop;
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    // Server and first client render agree on false, avoiding hydration mismatches
+    () => false,
+  );
 }

@@ -7,12 +7,14 @@ export const bearSprayQuickReleaseCaseStudy: CaseStudyContent = {
     slug: "bear-spray-quick-release",
     title: "Quick-Release Bear Spray Holder",
     subtitle:
-      "ENME 101 team mini-project designing a shoulder-strap mount that lets hikers deploy bear spray in seconds. Existing holders rely on slow zippers or swinging carabiners — we built a dovetail quick-release mechanism modelled in SolidWorks and validated with a PLA prototype.",
+      "ENME 101 team mini-project designing a shoulder-strap mount that lets hikers deploy bear spray in seconds. Existing holders rely on slow zippers or swinging carabiners. We built a dovetail quick-release mechanism modelled in SolidWorks and validated with a PLA prototype.",
     subtitleBullets: [
       "Team project with Tyson, Daniel, and Bennett.",
     ],
     status: "Completed prototype",
     statusTone: "success",
+    toolsSummary:
+      "We modelled the holder in SolidWorks and printed the prototype in PLA, designing each part to print without supports. The mount attaches to a shoulder strap with Velcro and releases through a dovetail joint.",
     projectType: "ENME 101 · Team mini-project",
     heroImage: `${base}/prototype-worn-hero.png`,
     heroAlt: "Prototype bear spray quick-release holder mounted on a backpack shoulder strap",
@@ -26,7 +28,7 @@ export const bearSprayQuickReleaseCaseStudy: CaseStudyContent = {
       id: "problem",
       label: "Problem & Need",
       bullets: [
-        "Bears can run up to 50 km/h — in an emergency you may only have seconds to deploy bear spray",
+        "Bears can run up to 50 km/h. In an emergency you may only have seconds to deploy bear spray",
         "Common attachments use zippers or carabiners that are slow to open and swing while hiking",
         "Many hikers stash canisters in side water pockets that are difficult to reach under stress",
         "Need: fast, reliable access from a backpack shoulder strap without sacrificing security during normal movement",
@@ -52,7 +54,7 @@ export const bearSprayQuickReleaseCaseStudy: CaseStudyContent = {
       id: "cad",
       title: "CAD",
       intro:
-        "Two-part SolidWorks assembly — a universal mounting base and a curved canister cradle joined by a dovetail slide.",
+        "Two-part SolidWorks assembly: a universal mounting base and a curved canister cradle joined by a dovetail slide.",
       images: [
         {
           id: "cad-assembly-front",
@@ -72,14 +74,14 @@ export const bearSprayQuickReleaseCaseStudy: CaseStudyContent = {
           id: "cad-mounting-base",
           src: `${base}/cad-mounting-base.png`,
           alt: "CAD render of mounting base with strap slots and dovetail channel",
-          caption: "Mounting base — strap slots and dovetail channel",
+          caption: "Mounting base: strap slots and dovetail channel",
           objectFit: "contain",
         },
         {
           id: "cad-canister-holder",
           src: `${base}/cad-canister-holder.png`,
           alt: "CAD render of canister holder with dovetail rail and weight-reduction cutouts",
-          caption: "Canister holder — dovetail rail and weight-reduction cutouts",
+          caption: "Canister holder: dovetail rail and weight-reduction cutouts",
           objectFit: "contain",
         },
         {

@@ -20,6 +20,8 @@ export interface CaseStudyMeta {
   /** Supplementary images shown beside the main hero in a collage layout */
   heroGallery?: HeroImage[];
   tags?: string[];
+  /** Plain sentence describing the tools and skills used */
+  toolsSummary?: string;
   /** Replaces tag pills with a single end-effector heading in the hero */
   endEffectorTitle?: string;
   /** Optional bullets shown below the subtitle paragraph */
@@ -130,6 +132,12 @@ export interface DevelopmentVersion {
   tertiaryImage?: string;
   tertiaryImageAlt?: string;
   tertiaryObjectFit?: "cover" | "contain";
+  /** Any further images, shown after the first three */
+  extraImages?: {
+    src: string;
+    alt: string;
+    objectFit?: "cover" | "contain";
+  }[];
 }
 
 export interface ProcessImageGroup {

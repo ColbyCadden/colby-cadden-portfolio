@@ -20,7 +20,7 @@ export function ProjectPreview({ project, index }: ProjectPreviewProps) {
           href={project.href}
           className="group flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
-          <div className="max-w-2xl">
+          <div>
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-text-subtle">
               {String(index + 1).padStart(2, "0")}
             </p>
@@ -54,7 +54,7 @@ export function ProjectPreview({ project, index }: ProjectPreviewProps) {
         : "single";
 
   return (
-    <FadeIn className="border-t border-border-subtle py-14 first:border-t-0 lg:py-20">
+    <FadeIn className="border-t border-border-subtle py-14 first:border-t-0 first:pt-0 lg:py-20 lg:first:pt-0">
       <Link href={project.href} className="group block transition-transform duration-500 hover:-translate-y-0.5">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14 xl:gap-16">
           {imageFirst ? (
@@ -102,9 +102,17 @@ function ProjectCopy({
       <h3 className="mt-2 font-display text-2xl font-normal tracking-[-0.01em] text-text-primary sm:text-[1.75rem]">
         {project.title}
       </h3>
-      <p className="mt-3 max-w-md text-[15px] leading-relaxed text-text-muted">
-        {project.shortText}
-      </p>
+      {project.layout === "hackathon" ? (
+        <ul className="mt-3 space-y-1 text-[15px] leading-relaxed text-text-muted">
+          {project.shortText.split(" · ").map((name) => (
+            <li key={name}>{name}</li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-3 text-[15px] leading-relaxed text-text-muted">
+          {project.shortText}
+        </p>
+      )}
       <p className="mt-4 text-[13px] leading-relaxed text-text-subtle">
         {project.metadata}
       </p>
@@ -173,7 +181,7 @@ function ProjectVisual({
           />
         </div>
         {project.secondaryImage && (
-          <div className="absolute bottom-4 right-4 w-[38%] overflow-hidden rounded-md shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-2 ring-background sm:bottom-5 sm:right-5 lg:w-[34%]">
+          <div className="absolute bottom-4 left-4 w-[38%] overflow-hidden rounded-md shadow-[0_12px_40px_rgba(0,0,0,0.45)] ring-2 ring-background sm:bottom-5 sm:left-5 lg:w-[34%]">
             <div className="relative aspect-[4/3]">
               <Image
                 src={project.secondaryImage}

@@ -10,6 +10,8 @@ export const roboticArmCaseStudy: CaseStudyContent = {
       "Working on the end effector accuracy and CAD redesign.",
     ],
     status: "In progress / prototyping",
+    toolsSummary:
+      "Every part is modelled in Fusion 360 and 3D printed in PLA. The control code is written in C++ with PlatformIO in VS Code and runs on an ESP32 and an Arduino Nano, with a time-of-flight distance sensor triggering the gripper and servos driving each joint.",
     projectType: "Passion project / mechatronics prototype",
     heroImage: "/images/projects/robotic-arm/gripper-v1-assembled-front.png",
     heroAlt: "Fusion 360 render of V1 robotic gripper with VL53L0X sensor",
@@ -21,25 +23,8 @@ export const roboticArmCaseStudy: CaseStudyContent = {
   sections: [
     {
       id: "cad-fabrication",
-      label: "CAD + Fabrication",
-      bullets: [
-        "Fusion 360 used for arm geometry, end-effector design, and print-ready exports",
-        "PLA 3D printing for functional prototype parts",
-        "Cardboard and styrofoam for fast early-form exploration before committing to prints",
-        "CAD → prototype → test → redesign loop to resolve geometry, printability, and assembly issues",
-        "Iterating on joint clearance, clip dimensions, and material use between versions",
-      ],
-    },
-    {
-      id: "embedded-control",
-      label: "Embedded Control + Sensor Integration",
-      bullets: [
-        "PlatformIO / VS Code workflow for firmware development and upload",
-        "C / Arduino-style embedded code for servo actuation and sensor reads",
-        "VL6180X ToF sensor input for proximity-triggered end-effector behavior",
-        "Debugging across library compatibility, upload failures, sensor detection, and serial monitor output",
-        "Touch input integrated as an additional control signal during prototyping",
-      ],
+      label: "The Build",
+      body: "This started with a simple question. Could I build an arm that grabs something on its own, without me babysitting every servo command? V1 barely answered that. The MS24 servo had the torque, but it was heavy enough that the gripper sagged under its own weight. The sensor only triggered right if you held things at the exact angle. It worked, just enough to show me what to fix.\n\nSince then it has basically been a loop. Build it, watch it fail in a new way, fix that one thing, print again. V2 moved to a lighter SG90 servo with a rack and pinion linkage, so the jaws stayed parallel instead of pinching sideways. V3 turned it into an actual arm. Two degrees of freedom, X braced links so it would not flex under its own weight, and bigger 25kg servos at the shoulder and elbow to carry the extra load.\n\nV4 is the one I am proudest of. The whole arm now rides a belt driven linear rail, so instead of being bolted to one spot it can slide along a track and reach way more of the workspace. Everything still runs on PlatformIO and Arduino style C, with a distance sensor in the palm so it only closes the gripper when something is actually there.\n\nStill a prototype. Next up is dialing in the proximity thresholds and tightening the jaw tolerances after the next print.",
     },
   ],
 
@@ -237,12 +222,7 @@ export const roboticArmCaseStudy: CaseStudyContent = {
 
   v3Direction: {
     label: "Next development focus",
-    focus: [
-      "Print and assemble the V3 arm and end effector for bench testing",
-      "Validate RDS3225 torque and joint clearance under load",
-      "Tune VL53L0X proximity thresholds for reliable grip triggers",
-      "Iterate jaw geometry and linkage tolerances after first print",
-    ],
+    focus: [],
   },
 
   visuals: [
